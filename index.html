@@ -1,10 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" href="style.css" />
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <div class="choices">
+      <button id="rock">Rock</button>
+      <button id="paper">Paper</button>
+      <button id="scissor">Scissor</button>
+    </div>
+
+    <div class="scoreboard">
+      <p>
+        Computer Score:
+        <span class="computerScoreBoard"></span>
+      </p>
+      <p>
+        Player Score:
+        <span class="playerScoreBoard"></span>
+      </p>
+    </div>
+
+    <div class="screen">
+      <span class="screenText"></span>
+    </div>
+  </body>
 </html>
