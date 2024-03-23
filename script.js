@@ -1,27 +1,35 @@
 let playCount = 0;
 let computerScore = 0;
 let playerScore = 0;
-
 const screenText = document.querySelector(".screenText");
-document.addEventListener("click", (event) => {
+const screenList = document.querySelector(".screenList");
+
+function clickHandler(event) {
   let target = event.target;
 
-  switch (target.id) {
-    case "rock":
-      screenText.textContent = playRound("rock", getComputerChoice());
-      break;
-    case "paper":
-      screenText.textContent = playRound("paper", getComputerChoice());
-      break;
-    case "scissor":
-      screenText.textContent = playRound("scissor", getComputerChoice());
-      break;
+  if (playCount < 5) {
+    switch (target.id) {
+      case "rock":
+        screenText.textContent = playRound("rock");
+        break;
+      case "paper":
+        screenText.textContent = playRound("paper");
+        break;
+      case "scissor":
+        screenText.textContent = playRound("scissor");
+        break;
+    }
   }
 
   if (playCount === 5) {
     announceWinner();
+    // Remove the event listener after 5 rounds
+    document.removeEventListener("click", clickHandler);
   }
-});
+}
+
+// Attach the event listener
+document.addEventListener("click", clickHandler);
 
 function getComputerChoice() {
   let choices = ["rock", "scissor", "paper"];
@@ -35,74 +43,86 @@ function updatePlayerScore() {
   playerScore++;
   playerScoreBoard.textContent = playerScore;
 }
+
 function updateComputerScore() {
   computerScore++;
   computerScoreBoard.textContent = computerScore;
 }
+
 function updatePlayCount() {
   playCount++;
 }
 
-function playRound(playerSelection, computerSelection) {
+function printRoundWinner(winner) {
+  const newList = document.createElement("li");
+  const newSpan = document.createElement("span");
+  newSpan.textContent = winner + " wins this round.";
+  newList.appendChild(newSpan);
+  screenList.appendChild(newList);
+}
+
+function playRound(playerSelection) {
+  updatePlayCount();
+  let computerSelection = getComputerChoice();
+  const newList = document.createElement("li");
+  const newSpan = document.createElement("span");
+
+  newList.appendChild(newSpan);
+  newSpan.textContent =
+    "Computer Choice: " +
+    computerSelection.toUpperCase() +
+    ",  " +
+    "Player Choice: " +
+    playerSelection.toUpperCase();
+  screenList.appendChild(newList);
+
   if (playCount < 5) {
-    let playerSelectionLower = playerSelection.toLowerCase();
-    let computerSelectionLower = computerSelection.toLowerCase();
-    if (playerSelectionLower === "rock") {
-      if (computerSelectionLower === "rock") {
-        updatePlayCount();
-        return "Try Again!";
-      } else if (computerSelectionLower === "paper") {
-        updatePlayCount();
+    if (playerSelection === "rock") {
+      if (computerSelection === "rock") {
+        printRoundWinner("No one");
+      } else if (computerSelection === "paper") {
         updateComputerScore();
-        return "You lost! Paper beats rock.";
+        printRoundWinner("Computer");
       } else {
-        //computer = scissor
-
-        updatePlayCount();
         updatePlayerScore();
-        return "You win! Rock beats scissor.";
+        printRoundWinner("Player");
       }
-    } else if (playerSelectionLower === "paper") {
-      if (computerSelectionLower === "rock") {
-        updatePlayCount();
+    } else if (playerSelection === "paper") {
+      if (computerSelection === "rock") {
         updatePlayerScore();
-        return "You win! Paper beats rock.";
-      } else if (computerSelectionLower === "paper") {
-        updatePlayCount();
-        return "Try again!";
+        printRoundWinner("Player");
+      } else if (computerSelection === "paper") {
+        printRoundWinner("No one");
       } else {
-        //computer = scissor
-
-        updatePlayCount();
         updateComputerScore();
-        return "You lost! Scissor beats paper!";
+        printRoundWinner("Computer");
       }
     } else {
-      //player selection scissors
-      if (computerSelectionLower === "rock") {
-        updatePlayCount();
+      if (computerSelection === "rock") {
         updateComputerScore();
-        return "You lost! Rock beats scissor.";
-      } else if (computerSelectionLower === "paper") {
-        updatePlayCount();
+        printRoundWinner("Computer");
+      } else if (computerSelection === "paper") {
         updatePlayerScore();
-        return "You win! Scissor beats paper.";
+        printRoundWinner("Player");
       } else {
-        //computer = scissor
-
         updatePlayCount();
-        return "Try again!";
+        printRoundWinner("No one");
       }
     }
   }
 }
 
 function announceWinner() {
+  const newList = document.createElement("li");
+  const newSpan = document.createElement("span");
   if (playerScore > computerScore) {
-    screenText.textContent = "You win!";
+    newSpan.textContent = "You win!";
   } else if (playerScore < computerScore) {
-    screenText.textContent = "Computer wins!";
+    newSpan.textContent = "Computer wins!";
   } else {
-    screenText.textContent = "Tied!";
+    newSpan.textContent = "Tied!";
   }
+
+  newList.appendChild(newSpan);
+  screenList.appendChild(newList);
 }
