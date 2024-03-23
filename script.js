@@ -76,38 +76,36 @@ function playRound(playerSelection) {
     playerSelection.toUpperCase();
   screenList.appendChild(newList);
 
-  if (playCount < 5) {
-    if (playerSelection === "rock") {
-      if (computerSelection === "rock") {
-        printRoundWinner("No one");
-      } else if (computerSelection === "paper") {
-        updateComputerScore();
-        printRoundWinner("Computer");
-      } else {
-        updatePlayerScore();
-        printRoundWinner("Player");
-      }
-    } else if (playerSelection === "paper") {
-      if (computerSelection === "rock") {
-        updatePlayerScore();
-        printRoundWinner("Player");
-      } else if (computerSelection === "paper") {
-        printRoundWinner("No one");
-      } else {
-        updateComputerScore();
-        printRoundWinner("Computer");
-      }
+  if (playerSelection === "rock") {
+    if (computerSelection === "rock") {
+      printRoundWinner("No one");
+    } else if (computerSelection === "paper") {
+      updateComputerScore();
+      printRoundWinner("Computer");
     } else {
-      if (computerSelection === "rock") {
-        updateComputerScore();
-        printRoundWinner("Computer");
-      } else if (computerSelection === "paper") {
-        updatePlayerScore();
-        printRoundWinner("Player");
-      } else {
-        updatePlayCount();
-        printRoundWinner("No one");
-      }
+      updatePlayerScore();
+      printRoundWinner("Player");
+    }
+  } else if (playerSelection === "paper") {
+    if (computerSelection === "rock") {
+      updatePlayerScore();
+      printRoundWinner("Player");
+    } else if (computerSelection === "paper") {
+      printRoundWinner("No one");
+    } else {
+      updateComputerScore();
+      printRoundWinner("Computer");
+    }
+  } else {
+    if (computerSelection === "rock") {
+      updateComputerScore();
+      printRoundWinner("Computer");
+    } else if (computerSelection === "paper") {
+      updatePlayerScore();
+      printRoundWinner("Player");
+    } else {
+      updatePlayCount();
+      printRoundWinner("No one");
     }
   }
 }
