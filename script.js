@@ -7,28 +7,19 @@ const screenList = document.querySelector(".screenList");
 function clickHandler(event) {
   let target = event.target;
 
-  if (playCount < 5) {
-    switch (target.id) {
-      case "rock":
-        screenText.textContent = playRound("rock");
-        break;
-      case "paper":
-        screenText.textContent = playRound("paper");
-        break;
-      case "scissor":
-        screenText.textContent = playRound("scissor");
-        break;
-    }
-  }
-
-  if (playCount === 5) {
-    announceWinner();
-    // Remove the event listener after 5 rounds
-    document.removeEventListener("click", clickHandler);
+  switch (target.id) {
+    case "rock":
+      screenText.textContent = playRound("rock");
+      break;
+    case "paper":
+      screenText.textContent = playRound("paper");
+      break;
+    case "scissor":
+      screenText.textContent = playRound("scissor");
+      break;
   }
 }
 
-// Attach the event listener
 document.addEventListener("click", clickHandler);
 
 function getComputerChoice() {
@@ -41,12 +32,10 @@ const computerScoreBoard = document.querySelector(".computerScoreBoard");
 
 function updatePlayerScore() {
   playerScore++;
-  playerScoreBoard.textContent = playerScore;
 }
 
 function updateComputerScore() {
   computerScore++;
-  computerScoreBoard.textContent = computerScore;
 }
 
 function updatePlayCount() {
@@ -108,6 +97,10 @@ function playRound(playerSelection) {
       printRoundWinner("No one");
     }
   }
+
+  if (playCount === 5) {
+    announceWinner();
+  }
 }
 
 function announceWinner() {
@@ -123,4 +116,5 @@ function announceWinner() {
 
   newList.appendChild(newSpan);
   screenList.appendChild(newList);
+  document.removeEventListener("click", clickHandler);
 }
