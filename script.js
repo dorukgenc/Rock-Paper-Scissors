@@ -122,4 +122,11 @@ function announceWinner() {
   newList.appendChild(newSpan);
   screenList.appendChild(newList);
   document.removeEventListener("click", clickHandler);
+  const playAgainButton = document.createElement("button");
+  playAgainButton.addEventListener("click", () => {
+    location.reload();
+  });
+  playAgainButton.innerText = "Play Again!";
+  playAgainButton.classList.add("playAgainButton");
+  screenList.appendChild(playAgainButton);
 }
