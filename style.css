@@ -13,3 +13,6 @@ button {
 ul {
   list-style-type: none;
 }
+.boldText {
+  font-weight: bold;
+}

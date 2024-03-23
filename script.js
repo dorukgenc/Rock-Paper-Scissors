@@ -109,6 +109,8 @@ function playRound(playerSelection) {
 function announceWinner() {
   const newList = document.createElement("li");
   const newSpan = document.createElement("span");
+  newSpan.classList.add("boldText");
+
   if (playerScore > computerScore) {
     newSpan.textContent = "You win!";
   } else if (playerScore < computerScore) {
