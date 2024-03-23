@@ -14,8 +14,8 @@ function clickHandler(event) {
     case "paper":
       screenText.textContent = playRound("paper");
       break;
-    case "scissor":
-      screenText.textContent = playRound("scissor");
+    case "scissors":
+      screenText.textContent = playRound("scissors");
       break;
   }
 }
@@ -23,7 +23,7 @@ function clickHandler(event) {
 document.addEventListener("click", clickHandler);
 
 function getComputerChoice() {
-  let choices = ["rock", "scissor", "paper"];
+  let choices = ["rock", "scissors", "paper"];
   return choices[Math.floor(Math.random() * 3)];
 }
 

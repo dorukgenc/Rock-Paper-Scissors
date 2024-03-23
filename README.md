@@ -1,2 +1,3 @@
-# Rock-Paper-Scissors
-Odin Project: Rock Paper Scissors 
+# Rock-Paper-scissorss
+
+Odin Project: Rock Paper scissorss
