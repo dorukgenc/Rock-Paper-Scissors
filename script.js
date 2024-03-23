@@ -93,7 +93,6 @@ function playRound(playerSelection) {
       updatePlayerScore();
       printRoundWinner("Player");
     } else {
-      updatePlayCount();
       printRoundWinner("No one");
     }
   }
