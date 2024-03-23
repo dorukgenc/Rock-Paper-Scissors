@@ -32,10 +32,14 @@ const computerScoreBoard = document.querySelector(".computerScoreBoard");
 
 function updatePlayerScore() {
   playerScore++;
+  let playerScoreText = document.querySelector(".playerScoreBoard");
+  playerScoreText.textContent = playerScore;
 }
 
 function updateComputerScore() {
   computerScore++;
+  let computerScoreText = document.querySelector(".computerScoreBoard");
+  computerScoreText.textContent = computerScore;
 }
 
 function updatePlayCount() {
