@@ -62,11 +62,11 @@ function playRound(playerSelection) {
 
   newList.appendChild(newSpan);
   newSpan.textContent =
-    "Computer Choice: " +
-    computerSelection.toUpperCase() +
+    "Player's Choice: " +
+    playerSelection.toUpperCase() +
     ",  " +
-    "Player Choice: " +
-    playerSelection.toUpperCase();
+    "Computer's Choice: " +
+    computerSelection.toUpperCase();
   screenList.appendChild(newList);
 
   if (playerSelection === "rock") {
